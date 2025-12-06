@@ -1,70 +1,209 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Souvi Academy – منصة التعليم</title>
+<meta charset="UTF-8">
+<title>Souvi Academy</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Google AdSense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4092780568314289"
-     crossorigin="anonymous"></script>
-<meta name="google-adsense-account" content="ca-pub-4092780568314289">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
 
-<link rel="stylesheet" href="style.css">
+body{
+font-family:'Cairo',sans-serif;
+background:#f1f4f9;
+margin:0;
+}
+
+header{
+background:linear-gradient(to right,#0d6efd,#20c997);
+padding:25px;
+text-align:center;
+color:white;
+font-size:26px;
+font-weight:bold;
+box-shadow:0 3px 10px rgba(0,0,0,.2);
+}
+
+.tabs{
+display:flex;
+justify-content:center;
+gap:8px;
+padding:10px;
+flex-wrap:wrap;
+}
+
+.tabs button{
+border:none;
+padding:10px 18px;
+border-radius:30px;
+background:#e9ecef;
+cursor:pointer;
+font-weight:bold;
+}
+
+.tabs button.active{
+background:#0d6efd;
+color:white;
+}
+
+.container{
+padding:15px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:15px;
+}
+
+.card{
+background:white;
+border-radius:15px;
+padding:15px;
+text-align:center;
+box-shadow:0 0 8px rgba(0,0,0,.1);
+transition:.3s;
+}
+
+.card:hover{
+transform:scale(1.03);
+}
+
+.card img{
+width:100%;
+max-height:160px;
+object-fit:cover;
+border-radius:10px;
+}
+
+.card h3{
+margin:10px 0;
+font-size:18px;
+}
+
+.btn{
+display:block;
+margin-top:8px;
+background:#198754;
+color:white;
+text-decoration:none;
+padding:8px;
+border-radius:8px;
+}
+
+.section-title{
+text-align:center;
+margin:25px 0 10px;
+font-size:22px;
+}
+
+.admin{
+background:white;
+margin:20px;
+padding:15px;
+border-radius:15px;
+text-align:center;
+}
+
+.admin input{
+width:90%;
+padding:8px;
+margin:5px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+footer{
+background:#111;
+color:white;
+text-align:center;
+padding:15px;
+margin-top:30px;
+}
+</style>
 </head>
+
 <body>
-<header class="site-header">
-  <div class="container">
-    <h1>Souvi Academy</h1>
-    <p class="tagline">منصة تعليمية – مكتبة كتب ودروس</p>
-  </div>
+
+<header>
+Souvi Academy 📚 منصة تعليمية
 </header>
 
-<nav class="main-nav container">
-  <a href="index.html">الرئيسية</a>
-  <a href="books.html">الكتب</a>
-  <a href="lessons.html">الدروس</a>
-  <a href="contact.html">تواصل</a>
-</nav>
+<div class="tabs">
+<button class="active" onclick="filter('all',this)">الكل</button>
+<button onclick="filter('fiqh',this)">فقه</button>
+<button onclick="filter('hadith',this)">حديث</button>
+<button onclick="filter('aqida',this)">عقيدة</button>
+</div>
 
-<main class="container">
-  <section class="hero card">
-    <h2>مرحبًا بك في Souvi Academy</h2>
-    <p>مكتبة من المواد التعليمية قابلة للعرض والتحميل. المشرف يرفع الملفات مباشرة داخل مجلد <code>/assets/books/</code></p>
-    <div class="actions">
-      <a class="btn"=<a href="books.html">📚 الانتقال إلى المكتبة</a>
- الانتقال إلى المكتبة</a>
-      <a class="btn ghost" href="lessons.html">📖 عرض الدروس</a>
-    </div>
-  </section>
+<div class="container" id="books">
 
-  <section class="features">
-    <div class="feature card">
-      <h3>سهل</h3>
-      <p>رفع الملفات عبر GitHub – تظهر تلقائيًا في المكتبة.</p>
-    </div>
-    <div class="feature card">
-      <h3>سريع</h3>
-      <p>تصميم خفيف ومحسّن للهواتف.</p>
-    </div>
-    <div class="feature card">
-      <h3>جاهز للإعلانات</h3>
-      <p>تم إضافة كود AdSense وملف ads.txt.</p>
-    </div>
-  </section>
+<div class="card" data-cat="fiqh">
+<img src="assets/images/book1.jpg">
+<h3>متن الأخضري</h3>
+<a class="btn" href="assets/books/akhdari.pdf" download>تحميل</a>
+</div>
 
-  <!-- sample ad slot -->
-  <div class="ad-slot card">
-    <p>مساحة إعلان AdSense</p>
-  </div>
-</main>
+<div class="card" data-cat="hadith">
+<img src="assets/images/book2.jpg">
+<h3>الأربعون النووية</h3>
+<a class="btn" href="assets/books/nawawi.pdf" download>تحميل</a>
+</div>
 
-<footer class="site-footer">
-  <div class="container">
-    <p>© 2025 Souvi Academy — جميع الحقوق محفوظة</p>
-  </div>
+<div class="card" data-cat="aqida">
+<img src="assets/images/book3.jpg">
+<h3>العقيدة الواسطية</h3>
+<a class="btn" href="assets/books/wasitiya.pdf" download>تحميل</a>
+</div>
+
+</div>
+
+<h2 class="section-title">🎥 الدروس</h2>
+
+<div class="container">
+
+<div class="card">
+<h3>شرح الطهارة</h3>
+<video width="100%" controls>
+<source src="assets/videos/tahara.mp4">
+</video>
+<a class="btn" href="assets/books/tahara.pdf">تحميل الملخص</a>
+</div>
+
+</div>
+
+<div class="admin">
+<h3>🔐 لوحة المشرف</h3>
+<input type="password" id="pass" placeholder="كلمة المرور">
+<input type="file" id="file">
+<button class="btn" onclick="admin()">رفع كتاب</button>
+<p id="msg"></p>
+</div>
+
+<footer>
+© Souvi Academy 2025 – جميع الحقوق محفوظة
 </footer>
 
-<script src="script.js"></script>
+<script>
+function filter(cat,btn){
+document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
+btn.classList.add('active');
+
+document.querySelectorAll('.card').forEach(card=>{
+if(cat=='all'||card.dataset.cat==cat){
+card.style.display='block';
+}else{
+card.style.display='none';
+}
+});
+}
+
+function admin(){
+let pass=document.getElementById("pass").value;
+if(pass!=="1234"){
+document.getElementById("msg").innerHTML="❌ رمز خاطئ";
+return;
+}
+document.getElementById("msg").innerHTML="✅ جاهز للرفع (عند ربط Firebase سيتم التفعيل)";
+}
+</script>
+
 </body>
 </html>
